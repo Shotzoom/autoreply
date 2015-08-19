@@ -16,7 +16,6 @@ module Autoreply
       x-ebay-mailtracker
       x-autoresponder
       x-autorespond
-      x-auto-response-suppress
     )
 
     def autoreply?
