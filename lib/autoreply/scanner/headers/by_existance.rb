@@ -19,7 +19,13 @@ module Autoreply
     )
 
     def autoreply?
-      !(KNOWN_HEADERS & header_fields.map(&:name).map(&:downcase)).blank?
+      !(KNOWN_HEADERS & detected_headers).blank?
     end
+
+    private
+
+      def detected_headers
+        header_fields.map(&:name).map(&:downcase)
+      end
   end
 end
