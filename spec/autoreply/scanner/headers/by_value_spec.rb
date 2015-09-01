@@ -54,6 +54,18 @@ describe Autoreply::Scanner::Headers::ByValue do
         expect(described_class.new(mail.header_fields).autoreply?).to be_truthy
       end
 
+      it "should detect `precedence` header" do
+        mail = Mail.new(default_email_headers.merge("precedence" => "auto_reply"))
+
+        expect(described_class.new(mail.header_fields).autoreply?).to be_truthy
+      end
+
+      it "should detect `x-precedence` header" do
+        mail = Mail.new(default_email_headers.merge("x-precedence" => "auto_reply"))
+
+        expect(described_class.new(mail.header_fields).autoreply?).to be_truthy
+      end
+
       it "should detect `x-precedence` header" do
         mail = Mail.new(default_email_headers.merge("x-precedence" => "bulk"))
 
