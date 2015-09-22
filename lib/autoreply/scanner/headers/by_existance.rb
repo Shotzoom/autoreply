@@ -16,6 +16,7 @@ module Autoreply
       x-ebay-mailtracker
       x-autoresponder
       x-autorespond
+      auto-submitted
     )
 
     def autoreply?
