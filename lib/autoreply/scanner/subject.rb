@@ -14,7 +14,8 @@ module Autoreply
       "Fuori sede",
       "Out of Office",
       "Frånvaro",
-      "Réponse automatique"
+      "Réponse automatique",
+      "Abwesend"
     ]
 
     def autoreply?
