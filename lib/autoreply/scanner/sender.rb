@@ -27,7 +27,7 @@ module Autoreply
     ]
 
     def autoreply?
-      !detected_senders.blank?
+      !detected_senders.empty?
     end
 
     private

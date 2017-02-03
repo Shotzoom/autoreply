@@ -15,7 +15,7 @@ module Autoreply
     }
 
     def autoreply?
-      !detected_headers.blank?
+      !detected_headers.empty?
     end
 
     private

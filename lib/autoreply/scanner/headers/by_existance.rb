@@ -20,7 +20,7 @@ module Autoreply
     )
 
     def autoreply?
-      !(KNOWN_HEADERS & detected_headers).blank?
+      !(KNOWN_HEADERS & detected_headers).empty?
     end
 
     private

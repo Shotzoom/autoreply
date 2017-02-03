@@ -19,22 +19,18 @@ module Autoreply
     ]
 
     def autoreply?
-      !detected_subjects.blank?
+      !detected_subjects.empty?
     end
 
     private
 
       def detected_subjects
-        return unless mail.subject
+        return [] unless mail.subject
 
         KNOWN_SUBJECTS.inject([]) do |result, subject|
-          result << subject if starts_with?(mail.subject, subject)
+          result << subject unless mail.subject.match(subject).nil?
           result
         end
-      end
-
-      def starts_with?(string, prefix)
-        string[0, prefix.length] == prefix
       end
   end
 end
