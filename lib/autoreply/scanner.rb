@@ -7,9 +7,10 @@ module Autoreply
     end
 
     def autoreply?
-      sender_scanner.autoreply? ||
+      sender_scanner.autoreply?  ||
       subject_scanner.autoreply? ||
-      headers_scanner.autoreply?
+      headers_scanner.autoreply? ||
+      microsoft_outlook_scanner.autoreply?
     end
 
     private
@@ -24,6 +25,10 @@ module Autoreply
 
       def headers_scanner
         Scanner::Headers.new(mail)
+      end
+
+      def microsoft_outlook_scanner
+        Scanner::MicrosoftOutlook.new(mail)
       end
   end
 end
