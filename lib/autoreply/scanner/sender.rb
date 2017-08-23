@@ -33,13 +33,29 @@ module Autoreply
     private
 
       def detected_senders
-        mail.from ||= []
-        mail.from.inject([]) do |result, email|
+        from.inject([]) do |result, email|
           KNOWN_SENDER_REGEXPS.each do |regexp|
             result.push(email) if email =~ regexp
           end
 
           result
+        end
+      end
+
+      # Sometimes non-standard emails are not parsed correctly. In this case Mail#from
+      # return String instance instead of Array.
+      #
+      # Example email: "foo@bar.baz <>"
+      #
+      # Possibly related issue https://github.com/mikel/mail/issues/1141
+      #
+      def from
+        mail.from ||= []
+
+        if mail.from.is_a?(String)
+          [mail.from]
+        else
+          mail.from
         end
       end
   end
