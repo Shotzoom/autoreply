@@ -12,7 +12,15 @@ require "autoreply/scanner/headers/by_value"
 module Autoreply
   extend self
 
+  attr_accessor :allowed_senders
+
   def autoreply?(mail)
+    return false if allowed_sender?(mail)
+
     Scanner.new(mail).autoreply?
+  end
+
+  def allowed_sender?(mail)
+    (allowed_senders.to_a & mail.from.to_a).any?
   end
 end

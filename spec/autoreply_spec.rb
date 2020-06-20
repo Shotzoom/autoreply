@@ -6,6 +6,22 @@ describe Autoreply do
   end
 
   describe "#autoreply?" do
+    before do
+      Autoreply.allowed_senders = %w(noreply@white.list)
+    end
+
+    it "should respect allowed_senders" do
+      mail = Mail.new(from: "noreply@white.list")
+
+      expect(described_class.autoreply?(mail)).to be_falsey
+    end
+  end
+
+  describe "#autoreply?" do
+    before do
+      Autoreply.allowed_senders = []
+    end
+
     it "should be truthy" do
       mail = Mail.new("x-precedence" => "bulk")
 

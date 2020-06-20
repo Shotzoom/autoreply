@@ -8,5 +8,5 @@ Detect if email is autoresponder or "out-of-office" email
 [![Dependency Status](https://gemnasium.com/edufii/autoreply.svg)](https://gemnasium.com/edufii/autoreply)
 
 # Usage
-
 `Autoreply.autoreply?(mail)`
+`Autoreply.allowed_senders = %w(noreply@whatever.site)`
